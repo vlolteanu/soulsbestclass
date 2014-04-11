@@ -1,0 +1,6 @@
+SoulsBestClass
+
+This is a quick and dirty command-line application that recommends what class to play in any Souls game.
+
+Based on the the user's desired stats, it recommends what class to pick so that said stats are reached at the lowest
+possible soul level.
