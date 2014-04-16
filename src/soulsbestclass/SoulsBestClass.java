@@ -51,7 +51,7 @@ public class SoulsBestClass
 		
 		for (String otherStat: stats)
 		{
-			if (stat == otherStat)
+			if (stat.equals(otherStat))
 				continue;
 			
 			for (;;)
