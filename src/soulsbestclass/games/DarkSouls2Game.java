@@ -26,7 +26,8 @@ public class DarkSouls2Game extends soulsbestclass.Game
 {
 	class DarkSouls2Char extends soulsbestclass.Character
 	{
-		DarkSouls2Char(String name, int lvl, int vig, int end, int vit, int att, int str, int dex, int ada, int intel, int fai)
+		DarkSouls2Char(String name, int lvl, int vig, int end, int vit, int att, int str, int dex, int adap,
+			int intel, int fai)
 		{
 			this.name = name;
 			level = lvl;
@@ -37,7 +38,7 @@ public class DarkSouls2Game extends soulsbestclass.Game
 			stats.put("Attunement",   att);
 			stats.put("Strength",     str);
 			stats.put("Dexterity",    dex);
-			stats.put("Adaptability", ada);
+			stats.put("Adaptability", adap);
 			stats.put("Intelligence", intel);
 			stats.put("Faith",        fai);
 		}

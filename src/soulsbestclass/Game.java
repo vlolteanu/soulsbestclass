@@ -40,8 +40,12 @@ public abstract class Game
 	{
 		this.name = name;
 	}
+
+	public Set<String> getStats()
+	{
+		return stats;
+	}
 	
-	/* a hack: use one of the char classes to normalize */
 	Map<String, Integer> normalize(Map<String, Integer> desiredStats) throws Exception
 	{
 		Map<String, Integer> ret = new HashMap<String, Integer>();

@@ -31,11 +31,6 @@ public class Character implements Comparable<Character>
 	protected int level;
 	protected Map<String, Integer> stats = new LinkedHashMap<String, Integer>();
 
-	public Map<String, Integer> getStats()
-	{
-		return stats;
-	}
-	
 	protected Character() {}
 	
 	Character(Character o)
@@ -43,6 +38,11 @@ public class Character implements Comparable<Character>
 		name = o.name;
 		level = o.level;
 		stats.putAll(o.stats);
+	}
+	
+	public Map<String, Integer> getStats()
+	{
+		return stats;
 	}
 	
 	/* the desired stats must be normalized */

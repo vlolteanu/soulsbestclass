@@ -28,7 +28,8 @@ public class DemonsSoulsGame extends Game
 {
 	class DemonsSoulsChar extends soulsbestclass.Character
 	{
-		DemonsSoulsChar(String name, int lvl, int vit, int intel, int end, int str, int dex, int mag, int fai, int luck)
+		DemonsSoulsChar(String name, int lvl, int vit, int intel, int end, int str, int dex, int mag, int fai,
+			int luck)
 		{
 			this.name = name;
 			level = lvl;

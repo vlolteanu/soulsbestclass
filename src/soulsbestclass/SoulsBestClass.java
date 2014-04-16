@@ -24,8 +24,10 @@ package soulsbestclass;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import soulsbestclass.games.DarkSouls2Game;
@@ -43,6 +45,41 @@ public class SoulsBestClass
 		games.put("dark2", new DarkSouls2Game());
 	}
 	
+	static int unambigousChars(String stat, Set<String> stats)
+	{
+		int ret = 1;
+		
+		for (String otherStat: stats)
+		{
+			if (stat == otherStat)
+				continue;
+			
+			for (;;)
+			{
+				if (!otherStat.startsWith(stat.substring(0, ret)))
+					break;
+				
+				ret++;
+			}
+		}
+		
+		return ret;
+	}
+	
+	static Set<String> formatStats(Set<String> stats)
+	{
+		LinkedHashSet<String> ret = new LinkedHashSet<String>();
+		
+		for (String stat: stats)
+		{
+			int prefix = unambigousChars(stat, stats);
+			
+			ret.add(stat.toLowerCase().substring(0, prefix) + "[" + stat.substring(prefix) + "]");
+		}
+		
+		return ret;
+	}
+	
 	/**
 	 * @param args the command line arguments
 	 */
@@ -53,10 +90,19 @@ public class SoulsBestClass
 		if (args.length == 0 || (args.length - 1) %2 != 0)
 		{
 			System.err.println("Args:\n" +
-				"\t<game name> [<stat name> <value> [<stat name> <value> [...]]]\n" +
-				"where game is one of:");
-			for (String game: games.keySet())
-				System.err.println("\t" + game + games.get(game));
+				"\t<game name> [<stat name> <value> [<stat name> <value> [...]]]");
+			
+			System.err.println("Supported games and stats:");
+			for (String gameName: games.keySet())
+			{
+				Game game = games.get(gameName);
+				System.err.println("\t" + gameName + "\t" + "(" + game + ")");
+				
+				for (String stat: formatStats(game.getStats()))
+					System.err.println("\t\t" + stat);
+			}
+			
+			System.exit(1);
 		}
 		
 		Game game = games.get(args[0]);

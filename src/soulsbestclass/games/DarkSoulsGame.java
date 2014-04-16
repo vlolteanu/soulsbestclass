@@ -26,7 +26,8 @@ public class DarkSoulsGame extends soulsbestclass.Game
 {
 	class DarkSoulsChar extends soulsbestclass.Character
 	{
-		DarkSoulsChar(String name, int lvl, int vit, int att, int end, int str, int dex, int res, int intel, int fai)
+		DarkSoulsChar(String name, int lvl, int vit, int att, int end, int str, int dex, int res, int intel,
+			int fai)
 		{
 			this.name = name;
 			level = lvl;
