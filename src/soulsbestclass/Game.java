@@ -35,7 +35,8 @@ public abstract class Game
 	String name;
 	protected Set<Character> classes = new LinkedHashSet<Character>();
 	protected Set<String> stats = null;
-	
+	protected Iterable<Tiebreaker> tiebreakers = new LinkedList<Tiebreaker>();
+
 	public Game(String name)
 	{
 		this.name = name;
@@ -81,12 +82,30 @@ public abstract class Game
 		
 		for (Character startingChar: classes)
 		{
-			Character proposal = startingChar.propose(desiredStats);
+			Character proposal1 = startingChar.propose(desiredStats);
 			boolean add = true;
 			
 			for (Iterator<Character> it = proposals.iterator(); it.hasNext();)
 			{
-				int result = proposal.compareTo(it.next());
+				Character proposal2 = it.next();
+				int result = proposal1.compareTo(proposal2);
+				
+				if (result == 0)
+				{
+					Character c1 = new Character(proposal1);
+					Character c2 = new Character(proposal2);
+					
+					for (Tiebreaker tiebreaker: tiebreakers)
+					{
+						tiebreaker.adjust(c1);
+						tiebreaker.adjust(c2);
+						
+						result = c1.compareTo(c2);
+						if (result != 0)
+							break;
+					}
+					
+				}
 				
 				if (result < 0)
 				{
@@ -100,7 +119,7 @@ public abstract class Game
 			}
 			
 			if (add)
-				proposals.add(proposal);
+				proposals.add(proposal1);
 		}
 		
 		return proposals;
