@@ -20,9 +20,23 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package soulsbestclass;
+package soulsbestclass.tiebreakers;
 
-public abstract class Tiebreaker
+import soulsbestclass.Character;
+import soulsbestclass.Tiebreaker;
+
+public class StatIgnoreTiebreaker extends Tiebreaker
 {
-	public abstract void adjust(Character c);
+	protected String stat;
+
+	public StatIgnoreTiebreaker(String stat)
+	{
+		this.stat = stat;
+	}
+
+	@Override
+	public void adjust(Character c)
+	{
+		c.getStats().remove(stat);
+	}
 }
