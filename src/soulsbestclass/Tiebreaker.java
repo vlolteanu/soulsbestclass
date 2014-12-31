@@ -24,5 +24,5 @@ package soulsbestclass;
 
 public abstract class Tiebreaker
 {
-	public abstract void adjust(Character c);
+	public abstract Character adjust(Character c);
 }

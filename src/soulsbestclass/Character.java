@@ -33,7 +33,7 @@ public class Character implements Comparable<Character>
 
 	protected Character() {}
 	
-	Character(Character o)
+	public Character(Character o)
 	{
 		name = o.name;
 		level = o.level;

@@ -35,8 +35,11 @@ public class StatIgnoreTiebreaker extends Tiebreaker
 	}
 
 	@Override
-	public void adjust(Character c)
+	public Character adjust(Character c)
 	{
-		c.getStats().remove(stat);
+		Character ret = new Character(c);
+		
+		ret.getStats().remove(stat);
+		return ret;
 	}
 }

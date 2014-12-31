@@ -92,13 +92,13 @@ public abstract class Game
 				
 				if (result == 0)
 				{
-					Character c1 = new Character(proposal1);
-					Character c2 = new Character(proposal2);
+					Character c1 = proposal1;
+					Character c2 = proposal2;
 					
 					for (Tiebreaker tiebreaker: tiebreakers)
 					{
-						tiebreaker.adjust(c1);
-						tiebreaker.adjust(c2);
+						c1 = tiebreaker.adjust(c1);
+						c2 = tiebreaker.adjust(c2);
 						
 						result = c1.compareTo(c2);
 						if (result != 0)
