@@ -22,6 +22,8 @@
 
 package soulsbestclass.games;
 
+import soulsbestclass.tiebreakers.StatIgnoreTiebreaker;
+
 public class DarkSoulsGame extends soulsbestclass.Game
 {
 	class DarkSoulsChar extends soulsbestclass.Character
@@ -59,5 +61,7 @@ public class DarkSoulsGame extends soulsbestclass.Game
 		classes.add(new DarkSoulsChar("Deprived",   6, 11, 11, 11, 11, 11, 11, 11, 11));
 		
 		stats = classes.iterator().next().getStats().keySet();
+		
+		tiebreakers.add(new StatIgnoreTiebreaker("Resistance"));
 	}
 }

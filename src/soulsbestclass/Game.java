@@ -35,7 +35,7 @@ public abstract class Game
 	String name;
 	protected Set<Character> classes = new LinkedHashSet<Character>();
 	protected Set<String> stats = null;
-	protected Iterable<Tiebreaker> tiebreakers = new LinkedList<Tiebreaker>();
+	protected LinkedList<Tiebreaker> tiebreakers = new LinkedList<Tiebreaker>();
 
 	public Game(String name)
 	{
