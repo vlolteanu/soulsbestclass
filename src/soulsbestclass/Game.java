@@ -75,6 +75,19 @@ public abstract class Game
 		return ret;
 	}
 	
+	protected int compareCharacters(Character c1, Character c2, Iterator<Tiebreaker> it)
+	{
+		int ret = c1.compareTo(c2);
+		
+		if (ret == 0 && it.hasNext())
+		{
+			Tiebreaker breaker = it.next();
+			ret = compareCharacters(breaker.adjust(c1), breaker.adjust(c2), it);
+		}
+		
+		return ret;
+	}
+	
 	List<Character> propose(Map<String, Integer> desiredStatsMurky) throws Exception
 	{
 		List<Character> proposals = new LinkedList<Character>();
@@ -88,24 +101,7 @@ public abstract class Game
 			for (Iterator<Character> it = proposals.iterator(); it.hasNext();)
 			{
 				Character proposal2 = it.next();
-				int result = proposal1.compareTo(proposal2);
-				
-				if (result == 0)
-				{
-					Character c1 = proposal1;
-					Character c2 = proposal2;
-					
-					for (Tiebreaker tiebreaker: tiebreakers)
-					{
-						c1 = tiebreaker.adjust(c1);
-						c2 = tiebreaker.adjust(c2);
-						
-						result = c1.compareTo(c2);
-						if (result != 0)
-							break;
-					}
-					
-				}
+				int result = compareCharacters(proposal1, proposal2, tiebreakers.iterator());
 				
 				if (result < 0)
 				{
