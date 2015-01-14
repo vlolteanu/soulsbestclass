@@ -61,7 +61,5 @@ public class DarkSoulsGame extends soulsbestclass.Game
 		classes.add(new DarkSoulsChar("Deprived",   6, 11, 11, 11, 11, 11, 11, 11, 11));
 		
 		stats = classes.iterator().next().getStats().keySet();
-		
-		tiebreakers.add(new StatIgnoreTiebreaker("Resistance"));
 	}
 }
